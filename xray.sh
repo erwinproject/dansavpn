@@ -933,18 +933,21 @@ wget -q -O clear-log "https://${GITHUB}/other/clear-log.sh"
 wget -q -O changer "https://${GITHUB}/other/changer.sh"
 echo -e "${GB}[ INFO ]${NC} ${YB}Download All Menu Done${NC}"
 sleep 2
+chmod +x web-add-vmess
 chmod +x add-vmess
 chmod +x del-vmess
 chmod +x extend-vmess
 chmod +x trialvmess
 chmod +x cek-vmess
 
+chmod +x web-add-vless
 chmod +x add-vless
 chmod +x del-vless
 chmod +x extend-vless
 chmod +x trialvless
 chmod +x cek-vless
 
+chmod +x web-add-trojan
 chmod +x add-trojan
 chmod +x del-trojan
 chmod +x extend-trojan
