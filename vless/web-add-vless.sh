@@ -1,15 +1,6 @@
 RANTEXT=`openssl rand -hex 12`
 CURRENTEPOCTIME=VLESS$RANTEXT
 
-NC='\e[0m'
-DEFBOLD='\e[39;1m'
-RB='\e[31;1m'
-GB='\e[32;1m'
-YB='\e[33;1m'
-BB='\e[34;1m'
-MB='\e[35;1m'
-CB='\e[35;1m'
-WB='\e[37;1m'
 clear
 domain=$(cat /usr/local/etc/xray/domain)
 user=${CURRENTEPOCTIME}
@@ -112,40 +103,40 @@ ISP=$(cat /usr/local/etc/xray/org)
 CITY=$(cat /usr/local/etc/xray/city)
 systemctl restart xray
 clear
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
-# echo -e "                    Vless Account                   " | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
-# echo -e "Remarks       : ${user}" | tee -a /user/log-vless-$user.txt
-# echo -e "Domain        : ${domain}" | tee -a /user/log-vless-$user.txt
-# echo -e "ISP           : $ISP" | tee -a /user/log-vless-$user.txt
-# echo -e "City          : $CITY" | tee -a /user/log-vless-$user.txt
-# echo -e "Port TLS      : 443" | tee -a /user/log-vless-$user.txt
-# echo -e "Port NTLS     : 80" | tee -a /user/log-vless-$user.txt
-# echo -e "Port gRPC     : 443" | tee -a /user/log-vless-$user.txt
-# echo -e "id            : ${uuid}" | tee -a /user/log-vless-$user.txt
-# echo -e "Encryption    : none" | tee -a /user/log-vless-$user.txt
-# echo -e "Flow          : xtls-rprx-vision" | tee -a /user/log-vless-$user.txt
-# echo -e "Network       : TCP, Websocket, gRPC" | tee -a /user/log-vless-$user.txt
-# echo -e "Path          : /vless" | tee -a /user/log-vless-$user.txt
-# echo -e "ServiceName   : vless-grpc" | tee -a /user/log-vless-$user.txt
-# echo -e "Alpn          : h2, http/1.1" | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
-# echo -e "Link TLS      : ${vlesslink1}" | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
-# echo -e "Link NTLS     : ${vlesslink2}" | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
-# echo -e "Link gRPC     : ${vlesslink3}" | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
-# echo -e "Link XTLS     : ${vlesslink4}" | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
+echo -e "                    Vless Account                   " | tee -a /user/log-vless-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
+echo -e "Remarks       : ${user}" | tee -a /user/log-vless-$user.txt
+echo -e "Domain        : ${domain}" | tee -a /user/log-vless-$user.txt
+echo -e "ISP           : $ISP" | tee -a /user/log-vless-$user.txt
+echo -e "City          : $CITY" | tee -a /user/log-vless-$user.txt
+echo -e "Port TLS      : 443" | tee -a /user/log-vless-$user.txt
+echo -e "Port NTLS     : 80" | tee -a /user/log-vless-$user.txt
+echo -e "Port gRPC     : 443" | tee -a /user/log-vless-$user.txt
+echo -e "id            : ${uuid}" | tee -a /user/log-vless-$user.txt
+echo -e "Encryption    : none" | tee -a /user/log-vless-$user.txt
+echo -e "Flow          : xtls-rprx-vision" | tee -a /user/log-vless-$user.txt
+echo -e "Network       : TCP, Websocket, gRPC" | tee -a /user/log-vless-$user.txt
+echo -e "Path          : /vless" | tee -a /user/log-vless-$user.txt
+echo -e "ServiceName   : vless-grpc" | tee -a /user/log-vless-$user.txt
+echo -e "Alpn          : h2, http/1.1" | tee -a /user/log-vless-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
+echo -e "Link TLS      : ${vlesslink1}" | tee -a /user/log-vless-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
+echo -e "Link NTLS     : ${vlesslink2}" | tee -a /user/log-vless-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
+echo -e "Link gRPC     : ${vlesslink3}" | tee -a /user/log-vless-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
+echo -e "Link XTLS     : ${vlesslink4}" | tee -a /user/log-vless-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
 # echo -e "Format Clash  : https://$domain/vless/vless-$user.txt" | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
+# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
 # echo -e "Expired On    : $exp" | tee -a /user/log-vless-$user.txt
-# echo -e "${BB}————————————————————————————————————————————————————${NC}" | tee -a /user/log-vless-$user.txt
+# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vless-$user.txt
 # echo " " | tee -a /user/log-vless-$user.txt
 # echo " " | tee -a /user/log-vless-$user.txt
 # echo " " | tee -a /user/log-vless-$user.txt
 # read -n 1 -s -r -p "Press any key to back on menu"
 # clear
 # vless
-echo -e "https://$domain/vless/vless-$user.txt"
+# echo -e "https://$domain/vless/vless-$user.txt"

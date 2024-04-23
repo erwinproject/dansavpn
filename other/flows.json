@@ -1,0 +1,537 @@
+[
+    {
+        "id": "8bcc7c81cb2651f8",
+        "type": "tab",
+        "label": "Master Flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3b53ebe1c9e8e42c",
+        "type": "subflow",
+        "name": "Trojan",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 80,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "152ec29d6be07f75"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "2ae45242395c38a0",
+        "type": "subflow",
+        "name": "Vmess",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 100,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "3946dbf0d43944b3"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "5a38a3a66b1ecc97",
+        "type": "subflow",
+        "name": "Vless",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "6ac8c72706d9c9d5"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "152ec29d6be07f75",
+        "type": "switch",
+        "z": "3b53ebe1c9e8e42c",
+        "name": "",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "create",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "delete",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "e85f8ca156c08154"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3270a0bef6b539a3",
+        "type": "exec queue",
+        "z": "3b53ebe1c9e8e42c",
+        "name": "",
+        "currentLine": {
+            "row": 0,
+            "column": 26
+        },
+        "command": "bash $file",
+        "debugMode": false,
+        "outputs": 1,
+        "useSpawn": "false",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "sh",
+        "template": "/usr/bin/web-add-trojan $1",
+        "output": "str",
+        "outputEmpty": false,
+        "vimMode": false,
+        "queue": 1,
+        "addpayCB": true,
+        "splitLine": false,
+        "cleanQueue": true,
+        "x": 730,
+        "y": 80,
+        "wires": [
+            [
+                "21655f02227b6325"
+            ]
+        ]
+    },
+    {
+        "id": "d52077905977e3fd",
+        "type": "change",
+        "z": "3b53ebe1c9e8e42c",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.sni",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "3270a0bef6b539a3"
+            ]
+        ]
+    },
+    {
+        "id": "420be1ef22f287e2",
+        "type": "http response",
+        "z": "3b53ebe1c9e8e42c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "21655f02227b6325",
+        "type": "function",
+        "z": "3b53ebe1c9e8e42c",
+        "name": "function 1",
+        "func": "var data = msg.payload\nvar str = data.replace(\"\u001b[H\u001b[2J\u001b[3J\u001b[H\u001b[2J\u001b[3J\", '');\n\n// msg.headers = {};\n// msg.headers['Origin'] = 'Access-Control-Allow-Origin';\nmsg.payload = str;\n// msg.req = flow.get('reqsys');\n// msg.res = flow.set('ressys');\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 80,
+        "wires": [
+            [
+                "420be1ef22f287e2"
+            ]
+        ]
+    },
+    {
+        "id": "e85f8ca156c08154",
+        "type": "function",
+        "z": "3b53ebe1c9e8e42c",
+        "name": "function 2",
+        "func": "flow.set('reqsys', msg.req);\nflow.set('ressys', msg.res);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "d52077905977e3fd"
+            ]
+        ]
+    },
+    {
+        "id": "3946dbf0d43944b3",
+        "type": "switch",
+        "z": "2ae45242395c38a0",
+        "name": "",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "create",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "delete",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 270,
+        "y": 120,
+        "wires": [
+            [
+                "2cd3a95d3aa428ad"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bf525b3e84919e94",
+        "type": "exec queue",
+        "z": "2ae45242395c38a0",
+        "name": "",
+        "currentLine": {
+            "row": 0,
+            "column": 22
+        },
+        "command": "bash $file",
+        "debugMode": false,
+        "outputs": 1,
+        "useSpawn": "false",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "sh",
+        "template": "/usr/bin/web-add-vmess",
+        "output": "str",
+        "outputEmpty": false,
+        "vimMode": false,
+        "queue": 1,
+        "addpayCB": false,
+        "splitLine": false,
+        "cleanQueue": true,
+        "x": 730,
+        "y": 80,
+        "wires": [
+            [
+                "d7cfba3c177b0fc1"
+            ]
+        ]
+    },
+    {
+        "id": "9c960a45353ac056",
+        "type": "http response",
+        "z": "2ae45242395c38a0",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "d7cfba3c177b0fc1",
+        "type": "function",
+        "z": "2ae45242395c38a0",
+        "name": "Fixed Output",
+        "func": "var data = msg.payload\nvar str = data.replace(\"\u001b[H\u001b[2J\u001b[3J\u001b[H\u001b[2J\u001b[3J\", '');\nvar str2 = str.replaceAll(\"/\u001b[0m/g\", '');\n\n// msg.headers = {};\n// msg.headers['Origin'] = 'Access-Control-Allow-Origin';\nmsg.payload = str2;\n// msg.req = flow.get('reqsys');\n// msg.res = flow.set('ressys');\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 80,
+        "wires": [
+            [
+                "9c960a45353ac056"
+            ]
+        ]
+    },
+    {
+        "id": "2cd3a95d3aa428ad",
+        "type": "change",
+        "z": "2ae45242395c38a0",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.sni",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 80,
+        "wires": [
+            [
+                "bf525b3e84919e94"
+            ]
+        ]
+    },
+    {
+        "id": "6ac8c72706d9c9d5",
+        "type": "switch",
+        "z": "5a38a3a66b1ecc97",
+        "name": "",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "create",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "delete",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "e5136ed2558ec3e3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "502d5011eefd2726",
+        "type": "exec queue",
+        "z": "5a38a3a66b1ecc97",
+        "name": "",
+        "currentLine": {
+            "row": 0,
+            "column": 22
+        },
+        "command": "bash $file",
+        "debugMode": false,
+        "outputs": 1,
+        "useSpawn": "false",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "sh",
+        "template": "/usr/bin/web-add-vless",
+        "output": "str",
+        "outputEmpty": false,
+        "vimMode": false,
+        "queue": 1,
+        "addpayCB": false,
+        "splitLine": false,
+        "cleanQueue": true,
+        "x": 650,
+        "y": 120,
+        "wires": [
+            [
+                "52fe840fe55ec89d"
+            ]
+        ]
+    },
+    {
+        "id": "c8b0a9455597106c",
+        "type": "http response",
+        "z": "5a38a3a66b1ecc97",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1010,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "52fe840fe55ec89d",
+        "type": "function",
+        "z": "5a38a3a66b1ecc97",
+        "name": "Fixed Output",
+        "func": "var data = msg.payload\nvar str = data.replace(\"\u001b[H\u001b[2J\u001b[3J\u001b[H\u001b[2J\u001b[3J\", '');\nvar str2 = str.replaceAll(\"/\u001b[0m/g\", '');\n\n// msg.headers = {};\n// msg.headers['Origin'] = 'Access-Control-Allow-Origin';\nmsg.payload = str2;\n// msg.req = flow.get('reqsys');\n// msg.res = flow.set('ressys');\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 120,
+        "wires": [
+            [
+                "c8b0a9455597106c"
+            ]
+        ]
+    },
+    {
+        "id": "e5136ed2558ec3e3",
+        "type": "change",
+        "z": "5a38a3a66b1ecc97",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.sni",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "502d5011eefd2726"
+            ]
+        ]
+    },
+    {
+        "id": "93375fda14621b34",
+        "type": "http in",
+        "z": "8bcc7c81cb2651f8",
+        "name": "",
+        "url": "/trojan",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "ef882c090a41d467"
+            ]
+        ]
+    },
+    {
+        "id": "ef882c090a41d467",
+        "type": "subflow:3b53ebe1c9e8e42c",
+        "z": "8bcc7c81cb2651f8",
+        "name": "",
+        "x": 450,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "caaef6e4546f0da7",
+        "type": "http in",
+        "z": "8bcc7c81cb2651f8",
+        "name": "",
+        "url": "/vmess",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 220,
+        "wires": [
+            [
+                "98b54d67248248c5"
+            ]
+        ]
+    },
+    {
+        "id": "98b54d67248248c5",
+        "type": "subflow:2ae45242395c38a0",
+        "z": "8bcc7c81cb2651f8",
+        "name": "",
+        "x": 450,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b72891ce0e7a2024",
+        "type": "http in",
+        "z": "8bcc7c81cb2651f8",
+        "name": "",
+        "url": "/vless",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 260,
+        "wires": [
+            [
+                "a159e339c21bf14e"
+            ]
+        ]
+    },
+    {
+        "id": "a159e339c21bf14e",
+        "type": "subflow:5a38a3a66b1ecc97",
+        "z": "8bcc7c81cb2651f8",
+        "name": "",
+        "x": 450,
+        "y": 260,
+        "wires": []
+    }
+]

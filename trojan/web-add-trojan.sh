@@ -2,15 +2,6 @@ RANTEXT=`openssl rand -hex 12`
 CURRENTEPOCTIME=TJ$RANTEXT
 SNIBUG=$1
 
-NC='\e[0m'
-DEFBOLD='\e[39;1m'
-RB='\e[31;1m'
-GB='\e[32;1m'
-YB='\e[33;1m'
-BB='\e[34;1m'
-MB='\e[35;1m'
-CB='\e[35;1m'
-WB='\e[37;1m'
 clear
 domain=$(cat /usr/local/etc/xray/domain)
 user=${CURRENTEPOCTIME}
@@ -85,30 +76,30 @@ ISP=$(cat /usr/local/etc/xray/org)
 CITY=$(cat /usr/local/etc/xray/city)
 systemctl restart xray
 clear
-# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
-# echo -e "                   Trojan Account                  " | tee -a /user/log-trojan-$user.txt
-# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
-# echo -e "Remarks       : ${user}" | tee -a /user/log-trojan-$user.txt
-# echo -e "ISP           : $ISP" | tee -a /user/log-trojan-$user.txt
-# echo -e "City          : $CITY" | tee -a /user/log-trojan-$user.txt
-# echo -e "Host/IP       : ${domain}" | tee -a /user/log-trojan-$user.txt
-# echo -e "Port TLS      : 443" | tee -a /user/log-trojan-$user.txt
-# echo -e "Port NTLS     : 80" | tee -a /user/log-trojan-$user.txt
-# echo -e "Port gRPC     : 443" | tee -a /user/log-trojan-$user.txt
-# echo -e "Password      : ${pwtr}" | tee -a /user/log-trojan-$user.txt
-# echo -e "Network       : TCP, Websocket, gRPC" | tee -a /user/log-trojan-$user.txt
-# echo -e "Path          : /trojan" | tee -a /user/log-trojan-$user.txt
-# echo -e "ServiceName   : trojan-grpc" | tee -a /user/log-trojan-$user.txt
-# echo -e "Alpn          : h2, http/1.1" | tee -a /user/log-trojan-$user.txt
-# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
-# echo -e "Link TLS      : ${trojanlink1}" | tee -a /user/log-trojan-$user.txt
-# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
-# echo -e "Link NTLS     : ${trojanlink2}" | tee -a /user/log-trojan-$user.txt
-# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
-# echo -e "Link gRPC     : ${trojanlink3}" | tee -a /user/log-trojan-$user.txt
-# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
-# echo -e "Link TCP      : ${trojanlink4}" | tee -a /user/log-trojan-$user.txt
-# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
+echo -e "                   Trojan Account                  " | tee -a /user/log-trojan-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
+echo -e "Remarks       : ${user}" | tee -a /user/log-trojan-$user.txt
+echo -e "ISP           : $ISP" | tee -a /user/log-trojan-$user.txt
+echo -e "City          : $CITY" | tee -a /user/log-trojan-$user.txt
+echo -e "Host/IP       : ${domain}" | tee -a /user/log-trojan-$user.txt
+echo -e "Port TLS      : 443" | tee -a /user/log-trojan-$user.txt
+echo -e "Port NTLS     : 80" | tee -a /user/log-trojan-$user.txt
+echo -e "Port gRPC     : 443" | tee -a /user/log-trojan-$user.txt
+echo -e "Password      : ${pwtr}" | tee -a /user/log-trojan-$user.txt
+echo -e "Network       : TCP, Websocket, gRPC" | tee -a /user/log-trojan-$user.txt
+echo -e "Path          : /trojan" | tee -a /user/log-trojan-$user.txt
+echo -e "ServiceName   : trojan-grpc" | tee -a /user/log-trojan-$user.txt
+echo -e "Alpn          : h2, http/1.1" | tee -a /user/log-trojan-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
+echo -e "Link TLS      : ${trojanlink1}" | tee -a /user/log-trojan-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
+echo -e "Link NTLS     : ${trojanlink2}" | tee -a /user/log-trojan-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
+echo -e "Link gRPC     : ${trojanlink3}" | tee -a /user/log-trojan-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
+echo -e "Link TCP      : ${trojanlink4}" | tee -a /user/log-trojan-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
 # echo -e "Format Clash  : https://$domain/trojan/trojan-$user.txt" | tee -a /user/log-trojan-$user.txt
 # echo -e "————————————————————————————————————————————————————" | tee -a /user/log-trojan-$user.txt
 # echo -e "Expired On    : $exp" | tee -a /user/log-trojan-$user.txt
@@ -118,4 +109,4 @@ clear
 # echo " " | tee -a /user/log-trojan-$user.txt
 # read -n 1 -s -r -p "Press any key to back on menu"
 
-echo -e "https://$domain/trojan/trojan-$user.txt"
+# echo -e "https://$domain/trojan/trojan-$user.txt"

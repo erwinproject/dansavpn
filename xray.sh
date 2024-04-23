@@ -1036,6 +1036,22 @@ echo -e "  ${YB}- Shadowsocks 2022 gRPC${NC}       : ${YB}443${NC}"
 echo -e "${BB}————————————————————————————————————————————————————————${NC}"
 echo ""
 rm -f xray
+
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs build-essential
+sudo apt install npm -y
+sudo npm install -g --unsafe-perm node-red
+
+# -------- MANUAL SETTING ---------------
+# sudo npm install -g --unsafe-perm pm2
+# node-red -v
+# * ctrl + c
+# pm2 start `which node-red` -- -v
+# pm2 save
+# pm2 startup
+# sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
+# --------------------------------------
+
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
 read answer

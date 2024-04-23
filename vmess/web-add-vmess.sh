@@ -1,15 +1,5 @@
 RANTEXT=`openssl rand -hex 12`
 CURRENTEPOCTIME=VMESS$RANTEXT
-
-NC='\e[0m'
-DEFBOLD='\e[39;1m'
-RB='\e[31;1m'
-GB='\e[32;1m'
-YB='\e[33;1m'
-BB='\e[34;1m'
-MB='\e[35;1m'
-CB='\e[35;1m'
-WB='\e[37;1m'
 clear
 domain=$(cat /usr/local/etc/xray/domain)
 user=${CURRENTEPOCTIME}
@@ -139,40 +129,37 @@ ISP=$(cat /usr/local/etc/xray/org)
 CITY=$(cat /usr/local/etc/xray/city)
 systemctl restart xray
 clear
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
-# echo -e "                   Vmess Account                    " | tee -a /user/log-vmess-$user.txt
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
-# echo -e "Remarks       : $user" | tee -a /user/log-vmess-$user.txt
-# echo -e "ISP           : $ISP" | tee -a /user/log-vmess-$user.txt
-# echo -e "City          : $CITY" | tee -a /user/log-vmess-$user.txt
-# echo -e "Domain        : $domain" | tee -a /user/log-vmess-$user.txt
-# echo -e "Port TLS      : 443" | tee -a /user/log-vmess-$user.txt
-# echo -e "Port NTLS     : 80" | tee -a /user/log-vmess-$user.txt
-# echo -e "Port gRPC     : 443" | tee -a /user/log-vmess-$user.txt
-# echo -e "id            : $uuid" | tee -a /user/log-vmess-$user.txt
-# echo -e "AlterId       : 0" | tee -a /user/log-vmess-$user.txt
-# echo -e "Security      : auto" | tee -a /user/log-vmess-$user.txt
-# echo -e "Network       : Websocket, gRPC" | tee -a /user/log-vmess-$user.txt
-# echo -e "Path          : /vmess" | tee -a /user/log-vmess-$user.txt
-# echo -e "ServiceName   : vmess-grpc" | tee -a /user/log-vmess-$user.txt
-# echo -e "Alpn          : h2, http/1.1" | tee -a /user/log-vmess-$user.txt
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
-# echo -e "Link TLS      : $vmesslink1" | tee -a /user/log-vmess-$user.txt
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
-# echo -e "Link NTLS     : $vmesslink2" | tee -a /user/log-vmess-$user.txt
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
-# echo -e "Link gRPC     : $vmesslink3" | tee -a /user/log-vmess-$user.txt
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
+echo -e "                   Vmess Account                    " | tee -a /user/log-vmess-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
+echo -e "Remarks       : $user" | tee -a /user/log-vmess-$user.txt
+echo -e "ISP           : $ISP" | tee -a /user/log-vmess-$user.txt
+echo -e "City          : $CITY" | tee -a /user/log-vmess-$user.txt
+echo -e "Domain        : $domain" | tee -a /user/log-vmess-$user.txt
+echo -e "Port TLS      : 443" | tee -a /user/log-vmess-$user.txt
+echo -e "Port NTLS     : 80" | tee -a /user/log-vmess-$user.txt
+echo -e "Port gRPC     : 443" | tee -a /user/log-vmess-$user.txt
+echo -e "id            : $uuid" | tee -a /user/log-vmess-$user.txt
+echo -e "AlterId       : 0" | tee -a /user/log-vmess-$user.txt
+echo -e "Security      : auto" | tee -a /user/log-vmess-$user.txt
+echo -e "Network       : Websocket, gRPC" | tee -a /user/log-vmess-$user.txt
+echo -e "Path          : /vmess" | tee -a /user/log-vmess-$user.txt
+echo -e "ServiceName   : vmess-grpc" | tee -a /user/log-vmess-$user.txt
+echo -e "Alpn          : h2, http/1.1" | tee -a /user/log-vmess-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
+echo -e "Link TLS      : $vmesslink1" | tee -a /user/log-vmess-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
+echo -e "Link NTLS     : $vmesslink2" | tee -a /user/log-vmess-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
+echo -e "Link gRPC     : $vmesslink3" | tee -a /user/log-vmess-$user.txt
+echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
 # echo -e "Format Clash  : https://$domain/vmess/vmess-$user.txt" | tee -a /user/log-vmess-$user.txt
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
+# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
 # echo -e "Expired On    : $exp" | tee -a /user/log-vmess-$user.txt
-# echo -e "————————————————————————————————————————————————————${NC}" | tee -a /user/log-vmess-$user.txt
-# echo " " | tee -a /user/log-vmess-$user.txt
-# echo " " | tee -a /user/log-vmess-$user.txt
-# echo " " | tee -a /user/log-vmess-$user.txt
+# echo -e "————————————————————————————————————————————————————" | tee -a /user/log-vmess-$user.txt
 # read -n 1 -s -r -p "Press any key to back on menu"
 # clear
 # vmess
 
-echo -e "https://$domain/vmess/vmess-$user.txt"
+# echo -e "https://$domain/vmess/vmess-$user.txt"
 
