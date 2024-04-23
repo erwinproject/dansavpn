@@ -1041,7 +1041,7 @@ curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install -y nodejs build-essential
 sudo apt install npm -y
 sudo npm install -g --unsafe-perm node-red
-
+npm install node-red-contrib-exec-queue
 # -------- MANUAL SETTING ---------------
 # sudo npm install -g --unsafe-perm pm2
 # node-red -v
