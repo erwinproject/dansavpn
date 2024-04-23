@@ -1,4 +1,4 @@
-RANTEXT=`openssl rand -hex 8`
+RANTEXT=`openssl rand -hex 12`
 CURRENTEPOCTIME=TJ$RANTEXT
 SNIBUG=$1
 
@@ -23,10 +23,10 @@ sed -i '/#trojan-tcp$/a\#& '"$user $exp"'\
 },{"password": "'""$pwtr""'","email": "'""$user""'"' /usr/local/etc/xray/config.json
 sed -i '/#trojan-grpc$/a\#& '"$user $exp"'\
 },{"password": "'""$pwtr""'","email": "'""$user""'"' /usr/local/etc/xray/config.json
-trojanlink1="trojan://$pwtr@$domain:443?path=/trojan&security=tls&host=$domain&type=ws&sni=$domain#$user"
-trojanlink2="trojan://${pwtr}@$domain:80?path=/trojan&security=none&host=$domain&type=ws#$user"
+trojanlink1="trojan://$pwtr@$SNIBUG:443?path=/trojan&security=tls&host=$domain&type=ws&sni=$domain#$user"
+trojanlink2="trojan://${pwtr}@$SNIBUG:80?path=/trojan&security=none&host=$domain&type=ws#$user"
 trojanlink3="trojan://${pwtr}@$domain:443?security=tls&encryption=none&type=grpc&serviceName=trojan-grpc&sni=$domain#$user"
-trojanlink4="trojan://${pwtr}@$domain:443?security=tls&type=tcp&sni=$domain#$user"
+trojanlink4="trojan://${pwtr}@$domain:443?security=tls&type=tcp&sni=$SNIBUG#$user"
 cat > /var/www/html/trojan/trojan-$user.txt << END
 ==========================
         Trojan TCP
