@@ -15,7 +15,6 @@ domain=$(cat /usr/local/etc/xray/domain)
 user=${CURRENTEPOCTIME}
 masaaktif=3
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#universal$/a\#@ '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
