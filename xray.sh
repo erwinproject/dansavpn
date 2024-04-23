@@ -864,6 +864,7 @@ wget -q -O allxray "https://${GITHUB}/menu/allxray.sh"
 sleep 0.5
 
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Vmess${NC}"
+wget -q -O web-add-vmess "https://${GITHUB}/vmess/web-add-vmess.sh"
 wget -q -O add-vmess "https://${GITHUB}/vmess/add-vmess.sh"
 wget -q -O del-vmess "https://${GITHUB}/vmess/del-vmess.sh"
 wget -q -O extend-vmess "https://${GITHUB}/vmess/extend-vmess.sh"
@@ -872,6 +873,7 @@ wget -q -O cek-vmess "https://${GITHUB}/vmess/cek-vmess.sh"
 sleep 0.5
 
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Vless${NC}"
+wget -q -O web-add-vless "https://${GITHUB}/vless/web-add-vless.sh"
 wget -q -O add-vless "https://${GITHUB}/vless/add-vless.sh"
 wget -q -O del-vless "https://${GITHUB}/vless/del-vless.sh"
 wget -q -O extend-vless "https://${GITHUB}/vless/extend-vless.sh"
@@ -880,6 +882,7 @@ wget -q -O cek-vless "https://${GITHUB}/vless/cek-vless.sh"
 sleep 0.5
 
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Trojan${NC}"
+wget -q -O web-add-trojan "https://${GITHUB}/trojan/web-add-trojan.sh"
 wget -q -O add-trojan "https://${GITHUB}/trojan/add-trojan.sh"
 wget -q -O del-trojan "https://${GITHUB}/trojan/del-trojan.sh"
 wget -q -O extend-trojan "https://${GITHUB}/trojan/extend-trojan.sh"
