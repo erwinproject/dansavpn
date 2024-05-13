@@ -1087,6 +1087,9 @@ Listen 1997
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 END
 
+sudo ufw allow 1997
+sudo ufw allow 1998
+
 # -- API DATA
 cat > /var/www/html/api.php << END
 <?php
