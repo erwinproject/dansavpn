@@ -1089,6 +1089,10 @@ generated
 END
 chmod +x /var/www/html/api.php
 systemctl start apache2
+clear
+cd /var/www/html
+git clone https://github.com/erwinproject/phpseclib.git
+cd
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
 read answer
