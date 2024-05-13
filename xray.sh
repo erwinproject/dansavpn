@@ -1037,7 +1037,7 @@ echo -e "${BB}——————————————————————
 echo ""
 rm -f xray
 
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+# curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 # sudo apt-get install -y nodejs build-essential
 # sudo apt install npm -y
 # sudo npm install -g --unsafe-perm node-red
