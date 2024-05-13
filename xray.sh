@@ -1038,10 +1038,10 @@ echo ""
 rm -f xray
 
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt-get install -y nodejs build-essential
-sudo apt install npm -y
-sudo npm install -g --unsafe-perm node-red
-npm install node-red-contrib-exec-queue
+# sudo apt-get install -y nodejs build-essential
+# sudo apt install npm -y
+# sudo npm install -g --unsafe-perm node-red
+# npm install node-red-contrib-exec-queue
 # -------- MANUAL SETTING ---------------
 # sudo npm install -g --unsafe-perm pm2
 # node-red -v
@@ -1051,6 +1051,52 @@ npm install node-red-contrib-exec-queue
 # pm2 startup
 # sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
 # --------------------------------------
+
+echo '------ Installing Apache2 for API Server'
+cd
+clear
+sleep 1
+systemctl stop nginx
+sudo apt install apache2 -y
+systemctl stop apache2
+systemctl start nginx
+sudo apt install php php7.4-fpm -y
+
+# -- INDEX HTML
+rm /var/www/html/index.html
+cat > /var/www/html/index.html << END
+ok
+END
+
+# -- SETUP APACHE
+cat > /etc/apache2/ports.conf << END
+# If you just change the port or add more ports here, you will likely also
+# have to change the VirtualHost statement in
+# /etc/apache2/sites-enabled/000-default.conf
+
+Listen 1997
+
+<IfModule ssl_module>
+        Listen 1998
+</IfModule>
+
+<IfModule mod_gnutls.c>
+        Listen 1998
+</IfModule>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+END
+
+# -- API DATA
+cat > /var/www/html/api.php << END
+<?php
+  phpinfo();
+?>
+END
+
+chmod +x /var/www/html/api.php
+
+systemctl start apache2
 
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
