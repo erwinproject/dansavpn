@@ -865,6 +865,8 @@ sleep 0.5
 
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Vmess${NC}"
 wget -q -O web-add-vmess "https://${GITHUB}/vmess/web-add-vmess.sh"
+wget -q -O web-add-vmess "https://${GITHUB}/vmess/web-del-vmess.sh"
+wget -q -O web-add-vmess "https://${GITHUB}/vmess/web-extend-vmess.sh"
 wget -q -O add-vmess "https://${GITHUB}/vmess/add-vmess.sh"
 wget -q -O del-vmess "https://${GITHUB}/vmess/del-vmess.sh"
 wget -q -O extend-vmess "https://${GITHUB}/vmess/extend-vmess.sh"
@@ -874,6 +876,8 @@ sleep 0.5
 
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Vless${NC}"
 wget -q -O web-add-vless "https://${GITHUB}/vless/web-add-vless.sh"
+wget -q -O web-add-vless "https://${GITHUB}/vless/web-del-vless.sh"
+wget -q -O web-add-vless "https://${GITHUB}/vless/web-extend-vless.sh"
 wget -q -O add-vless "https://${GITHUB}/vless/add-vless.sh"
 wget -q -O del-vless "https://${GITHUB}/vless/del-vless.sh"
 wget -q -O extend-vless "https://${GITHUB}/vless/extend-vless.sh"
@@ -883,6 +887,8 @@ sleep 0.5
 
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Trojan${NC}"
 wget -q -O web-add-trojan "https://${GITHUB}/trojan/web-add-trojan.sh"
+wget -q -O web-add-trojan "https://${GITHUB}/trojan/web-del-trojan.sh"
+wget -q -O web-add-trojan "https://${GITHUB}/trojan/web-extend-trojan.sh"
 wget -q -O add-trojan "https://${GITHUB}/trojan/add-trojan.sh"
 wget -q -O del-trojan "https://${GITHUB}/trojan/del-trojan.sh"
 wget -q -O extend-trojan "https://${GITHUB}/trojan/extend-trojan.sh"
@@ -934,6 +940,8 @@ wget -q -O changer "https://${GITHUB}/other/changer.sh"
 echo -e "${GB}[ INFO ]${NC} ${YB}Download All Menu Done${NC}"
 sleep 2
 chmod +x web-add-vmess
+chmod +x web-del-vmess
+chmod +x web-extend-vmess
 chmod +x add-vmess
 chmod +x del-vmess
 chmod +x extend-vmess
@@ -941,6 +949,8 @@ chmod +x trialvmess
 chmod +x cek-vmess
 
 chmod +x web-add-vless
+chmod +x web-del-vless
+chmod +x web-extend-vless
 chmod +x add-vless
 chmod +x del-vless
 chmod +x extend-vless
@@ -948,6 +958,8 @@ chmod +x trialvless
 chmod +x cek-vless
 
 chmod +x web-add-trojan
+chmod +x web-del-trojan
+chmod +x web-extend-trojan
 chmod +x add-trojan
 chmod +x del-trojan
 chmod +x extend-trojan
@@ -1036,22 +1048,6 @@ echo -e "  ${YB}- Shadowsocks 2022 gRPC${NC}       : ${YB}443${NC}"
 echo -e "${BB}————————————————————————————————————————————————————————${NC}"
 echo ""
 rm -f xray
-
-# curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-# sudo apt-get install -y nodejs build-essential
-# sudo apt install npm -y
-# sudo npm install -g --unsafe-perm node-red
-# npm install node-red-contrib-exec-queue
-# -------- MANUAL SETTING ---------------
-# sudo npm install -g --unsafe-perm pm2
-# node-red -v
-# * ctrl + c
-# pm2 start `which node-red` -- -v
-# pm2 save
-# pm2 startup
-# sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
-# --------------------------------------
-
 echo '------ Installing Apache2 for API Server'
 cd
 clear
@@ -1060,14 +1056,13 @@ systemctl stop nginx
 sudo apt install apache2 -y
 systemctl stop apache2
 systemctl start nginx
-sudo apt install php php7.4-fpm -y
-
+sudo apt install php7.4 php7.4-cli php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php7.4-fpm -y
+sudo apt-get install php libapache2-mod-php
 # -- INDEX HTML
 rm /var/www/html/index.html
 cat > /var/www/html/index.html << END
 ok
 END
-
 # -- SETUP APACHE
 cat > /etc/apache2/ports.conf << END
 # If you just change the port or add more ports here, you will likely also
@@ -1086,21 +1081,14 @@ Listen 1997
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 END
-
 sudo ufw allow 1997
 sudo ufw allow 1998
-
 # -- API DATA
 cat > /var/www/html/api.php << END
-<?php
-  phpinfo();
-?>
+generated
 END
-
 chmod +x /var/www/html/api.php
-
 systemctl start apache2
-
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
 read answer
