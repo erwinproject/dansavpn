@@ -39,7 +39,7 @@ Daftar Website rute dialihkan ke WARP
 | DNS Setting | ✅ |
 
 # Link Instalasi
-*Only Ubuntu Min Ver 20.04
+*Tested on Ubuntu Min Ver 20.04
 ```
 bash -c "$(wget -qO- s.id/25aMw)"
 ```
